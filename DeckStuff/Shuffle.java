@@ -1,7 +1,9 @@
 
 public class Shuffle{
-	public Shuffle() {}
-	CreateDeck MainDeck = new CreateDeck();
+	
+	CreateDeck mainDeck;
+	public Shuffle(CreateDeck md) {
+	mainDeck = md;}
 	
 	public Card DealCard(){
 		//initilizes dealedCard(used as card holder)
@@ -13,14 +15,14 @@ public class Shuffle{
 		
 		while (!pickable) {
 			
-			dealedCard = MainDeck.CardDeck[pickNum];
+			dealedCard = mainDeck.CardDeck[pickNum];
 			//if picked find new random
 			if (dealedCard.IsPicked() == true) {
 				pickNum = (int)(Math.random()*52);
 			}
 			//if not picked deal card by breaking loop
 			else if(dealedCard.IsPicked() == false) {
-				MainDeck.CardDeck[pickNum].SetPicked();
+				mainDeck.CardDeck[pickNum].SetPicked();
 				pickable=true;
 			}
 		}
@@ -41,7 +43,7 @@ public class Shuffle{
 			System.out.println(i+"|"+dealtCard.GetSuit()+","+dealtCard.GetNumber());
 		}
 		//shuffle test
-		ShuffleDeck(MainDeck.CardDeck);
+		ShuffleDeck(mainDeck.CardDeck);
 		System.out.println("---");
 		//redo dealing
 		for(int i=0; i< 52; i++) {
