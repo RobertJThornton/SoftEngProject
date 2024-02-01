@@ -1,3 +1,4 @@
+package DeckStuff;
 public class CreateDeck{
 //Loops for 52 cards in a deck giving each one a suit and card number
 	Card[] CardDeck = new Card[52]; {

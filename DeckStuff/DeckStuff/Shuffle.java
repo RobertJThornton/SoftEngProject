@@ -1,4 +1,4 @@
-
+package DeckStuff;
 public class Shuffle{
 	
 	CreateDeck mainDeck;
@@ -8,11 +8,12 @@ public class Shuffle{
 	public Card DealCard(){
 		//initilizes dealedCard(used as card holder)
 		Card dealedCard=null;
-		//initilizes pickable(need for the while loop to find a undealt card)
-		boolean pickable=false;
 		//initilizes a random number the size of the deck array
 		int pickNum = (int)(Math.random()*52);
 		
+		//initilizes pickable(need for the while loop to find a undealt card)
+		boolean pickable=false;
+		//loops while looking for a card that can be picked and breaks after finding one
 		while (!pickable) {
 			
 			dealedCard = mainDeck.CardDeck[pickNum];
@@ -29,6 +30,7 @@ public class Shuffle{
 		return dealedCard;
 	}
 	
+	//shuffles by setting each one to unpicked
 	public void ShuffleDeck(Card[] cardDeck) {
 		for(int i=0; i < 52; i++)
 		cardDeck[i].SetUnPicked();
