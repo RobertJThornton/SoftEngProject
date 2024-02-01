@@ -13,7 +13,7 @@ public class GUI {
 	public void topCard() {
 		System.out.println(" |----------| ");
 		for(int i=0; i<2;i++);
-		System.out.println();
+			System.out.println();
 	}
 	public void middleCard(int suit, int num) {
 		System.out.println("  Suit: " + TranslateSuit(suit));
