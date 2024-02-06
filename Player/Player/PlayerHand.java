@@ -41,13 +41,13 @@ public class PlayerHand{
 		String suitSt = null;
 		
 		switch(suitNum) {
-		case(1): suitSt = "Diamond:";
+		case(1): suitSt = " of Diamonds";
 		break;
-		case(2): suitSt = "Clubs:";
+		case(2): suitSt = " of Clubs";
 		break;
-		case(3): suitSt = "Spade:";
+		case(3): suitSt = " of Spades";
 		break;
-		case(4): suitSt = "Hearts:";
+		case(4): suitSt = " of Hearts";
 		break;
 		}
 		return suitSt;
@@ -73,7 +73,7 @@ public class PlayerHand{
 		return numberSt;
 	}
 	
-	public String getFullName(int suit, int number) {
-		return GetSuit(suit) + GetNumberString(number);
+	public String getFullName(int number, int suit) {
+		return GetNumberString(number) + GetSuit(suit);//GetSuit(suit) + GetNumberString(number);
 	}
 }
