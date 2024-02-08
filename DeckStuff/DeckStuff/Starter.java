@@ -26,7 +26,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
-import org.eclipse.wb.swing.FocusTraversalOnArray;
+
 import java.awt.Component;
 import javax.swing.JToggleButton;
 import javax.swing.event.ChangeListener;
@@ -67,14 +67,18 @@ public class Starter extends JFrame {
 	static CreateDeck mainDeck = new CreateDeck();
 	static Shuffle Shuffler = new Shuffle(mainDeck);
 	static PlayerHand Hand = new PlayerHand(Shuffler);
+	static Result Results = new Result();
+	
 	static int credits = 0;
-	//static int betAmount=0;
+	static int betAmount=0;
+	
 	static boolean c1 = false;
 	static boolean c2 = false;
 	static boolean c3 = false;
 	static boolean c4 = false;
 	static boolean c5 = false;
 	static boolean start = true;
+	
 	private JTextField card1;
 	private JTextField card2;
 	private JTextField card3;
@@ -84,6 +88,8 @@ public class Starter extends JFrame {
 	private JButton Exit;
 	private JButton Confirm;
 	private JButton Restart;
+	private JTextField ResultNum;
+	private JTextField ResultName;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -314,7 +320,10 @@ public class Starter extends JFrame {
 							//determine amount of credits and set text in credit
 							credits = credits - betAmount;
 							credit.setText(String.valueOf(credits));
-					
+							
+							Shuffler.ShuffleDeck(mainDeck.getDeck());
+							Hand.DealHand();
+							
 							//StartR.show();
 							//CardNum.show();
 							startB.hide();
@@ -516,35 +525,47 @@ public class Starter extends JFrame {
 		Confirm.setBackground(new Color(0, 128, 0));
 		Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Card1.setEnabled(false);
-				Card2.setEnabled(false);
-				Card3.setEnabled(false);
-				Card4.setEnabled(false);
-				Card5.setEnabled(false);
-				Hand.DealHand();
+
+				
+				
 				if (c1 == true) {
 					Card1.setSelected(false);
+					Hand.ReplaceCards(0);
 					card1.setText(Hand.getFullName(Hand.getHand()[0].GetNumber(), Hand.getHand()[0].GetSuit()));
 				}
 				if (c2 == true) {
 					Card2.setSelected(false);
+					Hand.ReplaceCards(1);
 					card2.setText(Hand.getFullName(Hand.getHand()[1].GetNumber(), Hand.getHand()[1].GetSuit()));
 				}
 				if (c3 == true) {
 					Card3.setSelected(false);
+					Hand.ReplaceCards(2);
 					card3.setText(Hand.getFullName(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit()));
 				}
 				if (c4 == true) {
 					Card4.setSelected(false);
+					Hand.ReplaceCards(3);
 					card4.setText(Hand.getFullName(Hand.getHand()[3].GetNumber(), Hand.getHand()[3].GetSuit()));
 				}
 				if (c5 == true) {
 					Card5.setSelected(false);
+					Hand.ReplaceCards(4);
 					card5.setText(Hand.getFullName(Hand.getHand()[4].GetNumber(), Hand.getHand()[4].GetSuit()));
 				}
 				Confirm.hide();
 				Exit.show();
 				Restart.show();
+				Results.SetResultCards(Hand.getHand(), credits);
+				int result = Results.GetResult();
+				credits += result;
+				if(result!=0) {
+				ResultNum.setText("+" + result);
+				ResultNum.show();
+				}
+				ResultName.setText(Results.GetResultName());
+				ResultName.show();
+				credit.setText(String.valueOf(credits));
 			}
 		});
 		contentPane.add(Confirm);
@@ -582,18 +603,13 @@ public class Starter extends JFrame {
 				StartB.show();
 				startB.show();
 				Restart.hide();
+				ResultNum.hide();
+				ResultName.hide();
 				Exit.hide();
 				//ReplaceCard.hide();
 				Shuffler.ShuffleDeck(mainDeck.getDeck());
-				for(int i =0; i< 5;i++) {
-					Hand.ReplaceCards(i);
-				}
 			}
 		});
-		
-		
-		Shuffler.ShuffleDeck(mainDeck.getDeck());
-		Hand.DealHand();
 		
 		Error = new JLabel("Error, invalid input");
 		Error.setBounds(252, 310, 270, 55);
@@ -614,6 +630,32 @@ public class Starter extends JFrame {
 			}
 		});
 		contentPane.add(Exit);
+		
+		ResultNum = new JTextField("");
+		ResultNum.setSelectedTextColor(Color.BLACK);
+		ResultNum.setHorizontalAlignment(SwingConstants.CENTER);
+		ResultNum.setForeground(Color.WHITE);
+		ResultNum.setFont(new Font("Stencil", Font.PLAIN, 14));
+		ResultNum.setEditable(false);
+		ResultNum.setColumns(10);
+		ResultNum.setBorder(null);
+		ResultNum.setBackground(new Color(0, 128, 0));
+		ResultNum.setBounds(10, 115, 135, 29);
+		ResultNum.hide();
+		contentPane.add(ResultNum);
+		
+		ResultName = new JTextField("");
+		ResultName.setSelectedTextColor(Color.BLACK);
+		ResultName.setHorizontalAlignment(SwingConstants.CENTER);
+		ResultName.setForeground(Color.WHITE);
+		ResultName.setFont(new Font("Stencil", Font.PLAIN, 14));
+		ResultName.setEditable(false);
+		ResultName.setColumns(10);
+		ResultName.setBorder(null);
+		ResultName.setBackground(new Color(0, 128, 0));
+		ResultName.setBounds(180, 115, 260, 29);
+		ResultName.hide();
+		contentPane.add(ResultName);
 		Exit.hide();
 		
 		//Exit Button Actions
