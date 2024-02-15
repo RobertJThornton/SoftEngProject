@@ -556,7 +556,7 @@ public class Starter extends JFrame {
 				Confirm.hide();
 				Exit.show();
 				Restart.show();
-				Results.SetResultCards(Hand.getHand(), credits);
+				Results.SetResultCards(Hand.getHand(), betAmount);
 				int result = Results.GetResult();
 				credits += result;
 				if(result!=0) {
