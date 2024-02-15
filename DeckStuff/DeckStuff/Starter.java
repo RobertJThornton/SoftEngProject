@@ -301,7 +301,7 @@ public class Starter extends JFrame {
 		Play.setBackground(new Color(0, 128, 0));
 		Play.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int betAmount = Integer.valueOf(startB.getText());
+				betAmount = Integer.valueOf(startB.getText());
 				if (start == true) {
 					credits = Integer.valueOf(startC.getText());
 				}
@@ -317,6 +317,7 @@ public class Starter extends JFrame {
 						else {
 							//set text in bet
 							bet.setText(startB.getText());
+							betAmount = Integer.valueOf(startB.getText());
 							//determine amount of credits and set text in credit
 							credits = credits - betAmount;
 							credit.setText(String.valueOf(credits));
