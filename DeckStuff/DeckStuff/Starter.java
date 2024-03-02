@@ -261,18 +261,6 @@ public class Starter extends JFrame {
 				else {
 					Error.show();
 				}
-				//CreateDeck mainDeck = new CreateDeck();
-				//Shuffle Shuffler = new Shuffle(mainDeck);
-				//sack = Shuffler.TestShuffle();
-				//Card1.setText(sack[0]);
-				//Card2.setText(sack[1]);
-				//Card3.setText(sack[2]);
-				
-				//Hold.setText(credit.getText());	
-				//credit.setText("");
-				//int money = Integer.parseInt(Hold.getText());
-				
-				
 			}
 		});
 		contentPane.add(Start);
@@ -344,7 +332,21 @@ public class Starter extends JFrame {
 							card3.setText(Hand.getFullName(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit()));
 							card4.setText(Hand.getFullName(Hand.getHand()[3].GetNumber(), Hand.getHand()[3].GetSuit()));
 							card5.setText(Hand.getFullName(Hand.getHand()[4].GetNumber(), Hand.getHand()[4].GetSuit()));
-							//ReplaceCard.show();
+							//diamond = 1, clubs = 2, spades = 3, hearts = 4
+							Image img1 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[0].GetNumber(), Hand.getHand()[0].GetSuit(), 0))).getImage();
+							Card1.setIcon(new ImageIcon(img1));
+							
+							Image img2 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[1].GetNumber(), Hand.getHand()[1].GetSuit(), 0))).getImage();
+							Card2.setIcon(new ImageIcon(img2));
+							
+							Image img3 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit(), 0))).getImage();
+							Card3.setIcon(new ImageIcon(img3));
+							
+							Image img4 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[3].GetNumber(), Hand.getHand()[3].GetSuit(), 0))).getImage();
+							Card4.setIcon(new ImageIcon(img4));
+							
+							Image img5 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[4].GetNumber(), Hand.getHand()[4].GetSuit(), 0))).getImage();
+							Card5.setIcon(new ImageIcon(img5));
 							Confirm.show();
 							Play.hide();
 							Error.hide();
@@ -533,29 +535,38 @@ public class Starter extends JFrame {
 					Card1.setSelected(false);
 					Hand.ReplaceCards(0);
 					card1.setText(Hand.getFullName(Hand.getHand()[0].GetNumber(), Hand.getHand()[0].GetSuit()));
+					Image imgR1 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[0].GetNumber(), Hand.getHand()[0].GetSuit(), 1))).getImage();
+					Card1.setIcon(new ImageIcon(imgR1));
 				}
 				if (c2 == true) {
 					Card2.setSelected(false);
 					Hand.ReplaceCards(1);
 					card2.setText(Hand.getFullName(Hand.getHand()[1].GetNumber(), Hand.getHand()[1].GetSuit()));
+					Image imgR2 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[1].GetNumber(), Hand.getHand()[1].GetSuit(), 1))).getImage();
+					Card2.setIcon(new ImageIcon(imgR2));
 				}
 				if (c3 == true) {
 					Card3.setSelected(false);
 					Hand.ReplaceCards(2);
 					card3.setText(Hand.getFullName(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit()));
+					Image img3 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit(), 1))).getImage();
+					Card3.setIcon(new ImageIcon(img3));
 				}
 				if (c4 == true) {
 					Card4.setSelected(false);
 					Hand.ReplaceCards(3);
 					card4.setText(Hand.getFullName(Hand.getHand()[3].GetNumber(), Hand.getHand()[3].GetSuit()));
+					Image imgR4 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[3].GetNumber(), Hand.getHand()[3].GetSuit(), 1))).getImage();
+					Card4.setIcon(new ImageIcon(imgR4));
 				}
 				if (c5 == true) {
 					Card5.setSelected(false);
 					Hand.ReplaceCards(4);
 					card5.setText(Hand.getFullName(Hand.getHand()[4].GetNumber(), Hand.getHand()[4].GetSuit()));
+					Image imgR5 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[4].GetNumber(), Hand.getHand()[4].GetSuit(), 1))).getImage();
+					Card5.setIcon(new ImageIcon(imgR5));
 				}
 				Confirm.hide();
-				Exit.show();
 				Restart.show();
 				Results.SetResultCards(Hand.getHand(), betAmount);
 				int result = Results.GetResult();
@@ -606,7 +617,6 @@ public class Starter extends JFrame {
 				Restart.hide();
 				ResultNum.hide();
 				ResultName.hide();
-				Exit.hide();
 				//ReplaceCard.hide();
 				Shuffler.ShuffleDeck(mainDeck.getDeck());
 			}
