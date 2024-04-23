@@ -1,35 +1,34 @@
 package DeckStuff;
 import java.util.*;
 
-
 //Creates Card with suit and number
 public class Card{
 
-	private int suit;
-	private int number;
-	//used in shuffle
-	private boolean picked;
+	//suit and number of the card and whether is has been picked
+	private int f_suit;
+	private int f_number;
+	private boolean f_picked;
 	
 	//Constructor
 	public Card(int suit, int number, boolean picked){
-		this.suit = suit;
-		this.number = number;
-		this.picked = false;
+		this.f_suit = suit;
+		this.f_number = number;
+		this.f_picked = false;
 	}
 	
 	//GetsSuit 1-4 represents the house
 	public int GetSuit(){
-		return suit;
+		return f_suit;
 	}
 	//Gets Number 1-13, 1 is Ace, 11-13 are jack,king,queen
 	public int GetNumber(){
-		return number;
+		return f_number;
 	}
 	
 	public String getSuit() {
 		String suitSt = null;
 		
-		switch(this.suit) {
+		switch(this.f_suit) {
 			case(1): 
 				suitSt = " of Diamonds";
 				break;
@@ -51,7 +50,7 @@ public class Card{
 	
 	public String getRank() {
 		String numSt = null;
-		switch(number) {
+		switch(f_number) {
 			case(1):
 				numSt = "Ace";
 			case(11):
@@ -61,7 +60,7 @@ public class Card{
 			case(13):
 				numSt = "King";
 			default:
-				numSt = String.valueOf(number);
+				numSt = String.valueOf(f_number);
 		}	
 		
 		return numSt;
@@ -70,14 +69,14 @@ public class Card{
 	
 	//returns if the card has already been drawn or not
 	public Boolean IsPicked() {
-		return picked;
+		return f_picked;
 	}
 	//sets if drawn
 	public void SetPicked() {
-		picked =true;
+		f_picked = true;
 	}
 	//resets to undrawn
 	public void SetUnPicked() {
-		picked =false;
+		f_picked = false;
 	}
 }
