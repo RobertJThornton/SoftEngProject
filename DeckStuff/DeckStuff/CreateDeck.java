@@ -1,8 +1,8 @@
 package DeckStuff;
 public class CreateDeck{
-//Loops for 52 cards in a deck giving each one a suit and card number
+	//create empty instance of Card
 	Card[] CardDeck = new Card[52]; 
-	
+	//Loops for 52 cards in a deck giving each one a suit and card number
 	public CreateDeck() {
 		int temp = 0;
 		for(int i = 1; i<5; i++) {
@@ -12,7 +12,7 @@ public class CreateDeck{
 			}
 		}
 	}
-	
+	//sends the created deck
 	public Card[] getDeck() {
 		return CardDeck;
 	}
