@@ -1,9 +1,9 @@
 package DeckStuff;
 public class Shuffle{
 	
-	CreateDeck mainDeck;
+	CreateDeck f_mainDeck;
 	public Shuffle(CreateDeck md) {
-		mainDeck = md;
+		f_mainDeck = md;
 	}
 	
 	public Card DealCard(){
@@ -17,15 +17,15 @@ public class Shuffle{
 		//loops while looking for a card that can be picked and breaks after finding one
 		while (!pickable) {
 			
-			dealedCard = mainDeck.CardDeck[pickNum];
+			dealedCard = f_mainDeck.CardDeck[pickNum];
 			//if picked find new random
 			if (dealedCard.IsPicked() == true) {
-				pickNum = (int)(Math.random()*52);
+				pickNum = (int)(Math.random() * 52);
 			}
 			//if not picked deal card by breaking loop
 			else if(dealedCard.IsPicked() == false) {
-				mainDeck.CardDeck[pickNum].SetPicked();
-				pickable=true;
+				f_mainDeck.CardDeck[pickNum].SetPicked();
+				pickable = true;
 			}
 		}
 		return dealedCard;
@@ -39,14 +39,14 @@ public class Shuffle{
 	
 	//can take a long time since its dealing 100 cards at once
 	public void TestShuffle() {	
-		Card dealtCard =null;
+		Card dealtCard = null;
 		//deals whole deck randomly
 		for(int i=0; i< 52; i++) {
 			dealtCard = DealCard();
 			System.out.println(i + "|" + dealtCard.GetSuit() + "," + dealtCard.GetNumber());
 		}
 		//shuffle test
-		ShuffleDeck(mainDeck.CardDeck);
+		ShuffleDeck(f_mainDeck.CardDeck);
 		System.out.println("---");
 		//redo dealing
 		for(int i=0; i< 52; i++) {
