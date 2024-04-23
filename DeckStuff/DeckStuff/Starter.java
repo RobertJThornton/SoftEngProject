@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import Player.PlayerHand;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.ActionEvent;
 
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLayeredPane;
@@ -37,32 +40,52 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 public class Starter extends JFrame {
+	/*NAMING RULES FOR GUI
+	 * JLabels start with capital letters
+	 * JTextFields start with lowercase
+	 * If the name is 2 words, second word is always capitalized
+	 * JButtons and JToggleButton start with capital letters
+	 * Any actions a button performs must stay between its creation and when:
+	 * 	-the line of f_contentPane.add, or the setcolumns line
+	 * JLabel text cannot be changed
+	 * JTextField can be changed by player
+	 */
 
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JLabel Name;
 	private JTextField name;
 	private JLabel Credit;
 	private JTextField credit;
-	private JTextField bet;
 	private JLabel Bet;
-	private JLabel StartC;
-	private JTextField startC;
+	private JTextField bet;
 	private JLabel StartN;
 	private JTextField startN;
-	private JLabel Error;
-	private JButton Play;
+	private JLabel StartC;
+	private JTextField startC;
+	private JLabel CreditRule;
+	private JButton Start;
 	private JLabel StartB;
 	private JTextField startB;
+	private JLabel BetRule;
+	private JButton Play;
+	private JTextField card1;
+	private JTextField card2;
+	private JTextField card3;
+	private JTextField card4;
+	private JTextField card5;
 	private JToggleButton Card1;
 	private JToggleButton Card2;
 	private JToggleButton Card3;
 	private JToggleButton Card4;
 	private JToggleButton Card5;
-
-	/**
-	 * Launch the application.
-	 */
-	
+	private JLabel StartR;
+	private JButton Confirm;
+	private JButton Restart;
+	private JLabel Error;
+	private JLabel Invalid;
+	private JButton Exit;
+	private JTextField ResultNum;
+	private JTextField ResultName;
 	
 	static CreateDeck mainDeck = new CreateDeck();
 	static Shuffle Shuffler = new Shuffle(mainDeck);
@@ -70,7 +93,7 @@ public class Starter extends JFrame {
 	static Result Results = new Result();
 	
 	static int credits = 0;
-	static int betAmount=0;
+	static int betAmount = 0;
 	
 	static boolean c1 = false;
 	static boolean c2 = false;
@@ -78,18 +101,6 @@ public class Starter extends JFrame {
 	static boolean c4 = false;
 	static boolean c5 = false;
 	static boolean start = true;
-	
-	private JTextField card1;
-	private JTextField card2;
-	private JTextField card3;
-	private JTextField card4;
-	private JTextField card5;
-	private JLabel StartR;
-	private JButton Exit;
-	private JButton Confirm;
-	private JButton Restart;
-	private JTextField ResultNum;
-	private JTextField ResultName;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -104,10 +115,7 @@ public class Starter extends JFrame {
 		});
 	}
 
-		
-	/**
-	 * Create the frame.
-	 */
+	//create the frame
 	public Starter() {
 		
 		setFont(new Font("Script MT Bold", Font.BOLD, 16));
@@ -131,7 +139,7 @@ public class Starter extends JFrame {
 		contentPane.add(GameName);
 		
 		//name inputs and label====================================================================== Name
-		JLabel Name = new JLabel("Name:");
+		Name = new JLabel("Name:");
 		Name.setBounds(10, 75, 54, 29);
 		Name.setBackground(new Color(255, 255, 255));
 		Name.setForeground(new Color(255, 255, 255));
@@ -159,7 +167,6 @@ public class Starter extends JFrame {
 		credit.setFont(new Font("Stencil", Font.PLAIN, 20));
 		contentPane.add(credit);
 		credit.setColumns(10);
-		//contentPane.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{GameName, Name, name, Credit, credit, ReplaceCard, Exit, Confirm, Restart, Start, bet, Bet, StartN, startN, Error, Play, StartB, startB, Card1, Card2, Card3, Card4, Card5, StartR, CardNum}));
 		//============================================================================================= Credit end
 		
 		//Bet========================================================================================== Bet
@@ -204,24 +211,27 @@ public class Starter extends JFrame {
 		startC.setBounds(421, 209, 96, 29);
 		contentPane.add(startC);
 		startC.setColumns(10);
+
+		CreditRule = new JLabel("Startng credits must be between 1 and 999");
+		CreditRule.setForeground(new Color(255, 255, 255));
+		CreditRule.setFont(new Font("Stencil", Font.PLAIN, 15));
+		CreditRule.setBounds(150, 179, 400, 29);
+		contentPane.add(CreditRule);
 		//=========================================================================================== Start Credits end
 		
-		
 		//Start Button================================================================================== Start Button
-		JButton Start = new JButton("Start");
+		Start = new JButton("Start");
 		Start.setBounds(329, 452, 116, 41);
 		Start.setForeground(new Color(255, 255, 255));
 		Start.setBackground(new Color(0, 128, 0));
 		Start.setFont(new Font("Stencil", Font.PLAIN, 20));
 		Start.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//
-				//If anyone can figure out how to get it to check for int input
 				//check if name is empty
 				if (!startN.getText().isEmpty()) {
 					//check if credits is empty
 					if (!startC.getText().isEmpty()) {
-						//dont even ask, just leave it
+						//check to make sure you can only enter numbers into startC
 						String p = startC.getText();
 						int r = p.length();
 						int oh = 0;
@@ -239,17 +249,22 @@ public class Starter extends JFrame {
 								Error.show();
 							}
 							else {
+								//sets the text box at top to match the player input
 								name.setText(startN.getText());
 								credit.setText(startC.getText());
+								//hide no longer needed text and show next game phase
 								StartC.hide();
 								startC.hide();
+								CreditRule.hide();
 								StartN.hide();
 								startN.hide();
 								Error.hide();
 								Start.hide();
 								StartB.show();
 								startB.show();
+								BetRule.show();
 							} }
+						//error labels
 						else {
 							Error.show();
 						}
@@ -273,13 +288,22 @@ public class Starter extends JFrame {
 		StartB.setFont(new Font("Stencil", Font.PLAIN, 20));
 		contentPane.add(StartB);
 		StartB.hide();
-		
+
+		//player can enter starting bet
 		startB = new JTextField();
 		startB.setBounds(329, 288, 96, 29);
 		startB.setFont(new Font("Stencil", Font.PLAIN, 20));
 		contentPane.add(startB);
 		startB.setColumns(10);
 		startB.hide();
+
+		//informs player of how much they can bet
+		BetRule = new JLabel("must be or be between 1 and 5");
+		BetRule.setForeground(new Color(255, 255, 255));
+		BetRule.setFont(new Font("Stencil", Font.PLAIN, 15));
+		BetRule.setBounds(74, 257, 400, 29);
+		contentPane.add(BetRule);
+		BetRule.hide();
 		//============================================================================================ Betting end
 		
 		//play button ================================================================================== Play Button
@@ -300,7 +324,8 @@ public class Starter extends JFrame {
 					else {
 						//can't bet more than player has
 						if ((credits - betAmount) < 0) {
-							Error.show();
+							Error.hide();
+							Invalid.show();
 						}
 						else {
 							//set text in bet
@@ -309,30 +334,38 @@ public class Starter extends JFrame {
 							//determine amount of credits and set text in credit
 							credits = credits - betAmount;
 							credit.setText(String.valueOf(credits));
-							
+							//makes deck
 							Shuffler.ShuffleDeck(mainDeck.getDeck());
+							//makes player hand
 							Hand.DealHand();
-							
-							//StartR.show();
-							//CardNum.show();
+							//hide unneccesary text and shows cards
 							startB.hide();
 							StartB.hide();
+							BetRule.hide();
 							card1.show();
 							card2.show();
 							card3.show();
 							card4.show();
 							card5.show();
+							//reset card selected status for new games
+							Card1.setSelected(false);
+							Card2.setSelected(false);
+							Card3.setSelected(false);
+							Card4.setSelected(false);
+							Card5.setSelected(false);
+							//show card buttons
 							Card1.show();
 							Card2.show();
 							Card3.show();
 							Card4.show();
 							Card5.show();
+							//set text of text box under cards
 							card1.setText(Hand.getFullName(Hand.getHand()[0].GetNumber(), Hand.getHand()[0].GetSuit()));
 							card2.setText(Hand.getFullName(Hand.getHand()[1].GetNumber(), Hand.getHand()[1].GetSuit()));
 							card3.setText(Hand.getFullName(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit()));
 							card4.setText(Hand.getFullName(Hand.getHand()[3].GetNumber(), Hand.getHand()[3].GetSuit()));
 							card5.setText(Hand.getFullName(Hand.getHand()[4].GetNumber(), Hand.getHand()[4].GetSuit()));
-							//diamond = 1, clubs = 2, spades = 3, hearts = 4
+							//sets the cards images
 							Image img1 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[0].GetNumber(), Hand.getHand()[0].GetSuit(), 0))).getImage();
 							Card1.setIcon(new ImageIcon(img1));
 							
@@ -347,9 +380,11 @@ public class Starter extends JFrame {
 							
 							Image img5 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[4].GetNumber(), Hand.getHand()[4].GetSuit(), 0))).getImage();
 							Card5.setIcon(new ImageIcon(img5));
+							//more text box hiding and showing
 							Confirm.show();
 							Play.hide();
 							Error.hide();
+							Invalid.hide();
 						}
 					}
 				}
@@ -359,6 +394,7 @@ public class Starter extends JFrame {
 		//===================================================================================== Play Button end
 		
 		//Card Label================================================================================ Card Label
+		//text box under cards, every one in this section is the same format
 		card1 = new JTextField("");
 		card1.setHorizontalAlignment(SwingConstants.CENTER);
 		card1.setBorder(null);
@@ -426,7 +462,11 @@ public class Starter extends JFrame {
 		//=============================================================================== Card Label end
 		
 		//Card Button==================================================================== Card Button
+		//the buttons so the player can select which cards to replace
 		Card1 = new JToggleButton();
+		Card1.setBackground(new Color(0, 64, 0));
+		Border emptyBorder1 = BorderFactory.createEmptyBorder();
+		Card1.setBorder(emptyBorder1);
 		Card1.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent a) {
 				int state = a.getStateChange();
@@ -444,6 +484,9 @@ public class Starter extends JFrame {
 		Card1.hide();
 		
 		Card2 = new JToggleButton();
+		Card2.setBackground(new Color(0, 64, 0));
+		Border emptyBorder2 = BorderFactory.createEmptyBorder();
+		Card2.setBorder(emptyBorder2);
 		Card2.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent b) {
 				int state = b.getStateChange();
@@ -461,6 +504,9 @@ public class Starter extends JFrame {
 		Card2.hide();
 		
 		Card3 = new JToggleButton();
+		Card3.setBackground(new Color(0, 64, 0));
+		Border emptyBorder3 = BorderFactory.createEmptyBorder();
+		Card3.setBorder(emptyBorder3);
 		Card3.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent c) {
 				int state = c.getStateChange();
@@ -477,6 +523,9 @@ public class Starter extends JFrame {
 		Card3.hide();
 		
 		Card4 = new JToggleButton();
+		Card4.setBackground(new Color(0, 64, 0));
+		Border emptyBorder4 = BorderFactory.createEmptyBorder();
+		Card4.setBorder(emptyBorder4);
 		Card4.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent d) {
 				int state = d.getStateChange();
@@ -493,6 +542,9 @@ public class Starter extends JFrame {
 		Card4.hide();
 		
 		Card5 = new JToggleButton();
+		Card5.setBackground(new Color(0, 64, 0));
+		Border emptyBorder5 = BorderFactory.createEmptyBorder();
+		Card5.setBorder(emptyBorder5);
 		Card5.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				int state = e.getStateChange();
@@ -516,9 +568,7 @@ public class Starter extends JFrame {
 		StartR.setFont(new Font("Stencil", Font.PLAIN, 20));
 		contentPane.add(StartR);
 		StartR.hide();
-		//StartR.setLabelFor(CardNum);
 		//=================================================================================== Replace Label end
-		
 		
 		//Confirm Replace==================================================================== Confirm Replace
 		Confirm = new JButton("Confirm");
@@ -528,9 +578,7 @@ public class Starter extends JFrame {
 		Confirm.setBackground(new Color(0, 128, 0));
 		Confirm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				
-				
+				//replace cards
 				if (c1 == true) {
 					Card1.setSelected(false);
 					Hand.ReplaceCards(0);
@@ -549,8 +597,8 @@ public class Starter extends JFrame {
 					Card3.setSelected(false);
 					Hand.ReplaceCards(2);
 					card3.setText(Hand.getFullName(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit()));
-					Image img3 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit(), 1))).getImage();
-					Card3.setIcon(new ImageIcon(img3));
+					Image imgR3 = new ImageIcon(this.getClass().getResource(Images.cardIm(Hand.getHand()[2].GetNumber(), Hand.getHand()[2].GetSuit(), 1))).getImage();
+					Card3.setIcon(new ImageIcon(imgR3));
 				}
 				if (c4 == true) {
 					Card4.setSelected(false);
@@ -568,22 +616,22 @@ public class Starter extends JFrame {
 				}
 				Confirm.hide();
 				Restart.show();
+				//tell player results and return the correct amount of credits
 				Results.SetResultCards(Hand.getHand(), betAmount);
 				int result = Results.GetResult();
 				credits += result;
-				if(result!=0) {
-				ResultNum.setText("+" + result);
-				ResultNum.show();
+				if(result != 0) {
+				resultNum.setText("+" + result);
+				resultNum.show();
 				}
-				ResultName.setText(Results.GetResultName());
-				ResultName.show();
+				resultName.setText(Results.GetResultName());
+				resultName.show();
 				credit.setText(String.valueOf(credits));
 			}
 		});
 		contentPane.add(Confirm);
 		Confirm.hide();
 		//==================================================================================== Confirm Replace end
-		
 
 		//Replay Button====================================================================== Replay Button
 		Restart = new JButton("Replay");
@@ -591,13 +639,6 @@ public class Starter extends JFrame {
 		Restart.setForeground(Color.WHITE);
 		Restart.setFont(new Font("Stencil", Font.PLAIN, 20));
 		Restart.setBackground(new Color(0, 128, 0));
-		contentPane.add(Restart);
-		Restart.hide();
-		
-		//make a getter for this!!!!!!
-		List<Integer> ToReplace = new ArrayList<Integer>();
-		
-		//restart Button actions
 		Restart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				start = false;
@@ -615,20 +656,30 @@ public class Starter extends JFrame {
 				StartB.show();
 				startB.show();
 				Restart.hide();
-				ResultNum.hide();
-				ResultName.hide();
-				//ReplaceCard.hide();
+				resultNum.hide();
+				resultName.hide();
 				Shuffler.ShuffleDeck(mainDeck.getDeck());
 			}
 		});
-		
+		contentPane.add(Restart);
+		Restart.hide();
+
+		//Error ============================================================= Error
 		Error = new JLabel("Error, invalid input");
 		Error.setBounds(252, 310, 270, 55);
 		Error.setForeground(new Color(255, 0, 0));
 		Error.setFont(new Font("Stencil", Font.PLAIN, 24));
 		contentPane.add(Error);
+		Error.hide();
+
+		Invalid = new JLabel("Cannot exceed current credits");
+		Invalid.setForeground(new Color(255, 0, 0));
+		Invalid.setFont(new Font("Stencil", Font.PLAIN, 24));
+		Invalid.setBounds(150, 310, 450, 55);
+		f_contentPane.add(Invalid);
+		Invalid.hide();
 		
-		//Exit Button
+		//Exit =============================================================== Exit
 		Exit = new JButton("Exit");
 		Exit.setBounds(200, 452, 116, 41);
 		Exit.setForeground(Color.WHITE);
@@ -636,50 +687,36 @@ public class Starter extends JFrame {
 		Exit.setBackground(new Color(0, 128, 0));
 		Exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
-						
+				dispose();			
 			}
 		});
 		contentPane.add(Exit);
+
+		//Result ========================================================== Result
+		resultNum = new JTextField("");
+		resultNum.setSelectedTextColor(Color.BLACK);
+		resultNum.setHorizontalAlignment(SwingConstants.CENTER);
+		resultNum.setForeground(Color.WHITE);
+		resultNum.setFont(new Font("Stencil", Font.PLAIN, 14));
+		resultNum.setEditable(false);
+		resultNum.setColumns(10);
+		resultNum.setBorder(null);
+		resultNum.setBackground(new Color(0, 128, 0));
+		resultNum.setBounds(10, 115, 135, 29);
+		resultNum.hide();
+		contentPane.add(resultNum);
 		
-		ResultNum = new JTextField("");
-		ResultNum.setSelectedTextColor(Color.BLACK);
-		ResultNum.setHorizontalAlignment(SwingConstants.CENTER);
-		ResultNum.setForeground(Color.WHITE);
-		ResultNum.setFont(new Font("Stencil", Font.PLAIN, 14));
-		ResultNum.setEditable(false);
-		ResultNum.setColumns(10);
-		ResultNum.setBorder(null);
-		ResultNum.setBackground(new Color(0, 128, 0));
-		ResultNum.setBounds(10, 115, 135, 29);
-		ResultNum.hide();
-		contentPane.add(ResultNum);
-		
-		ResultName = new JTextField("");
-		ResultName.setSelectedTextColor(Color.BLACK);
-		ResultName.setHorizontalAlignment(SwingConstants.CENTER);
-		ResultName.setForeground(Color.WHITE);
-		ResultName.setFont(new Font("Stencil", Font.PLAIN, 14));
-		ResultName.setEditable(false);
-		ResultName.setColumns(10);
-		ResultName.setBorder(null);
-		ResultName.setBackground(new Color(0, 128, 0));
-		ResultName.setBounds(180, 115, 260, 29);
-		ResultName.hide();
-		contentPane.add(ResultName);
-		Exit.hide();
-		
-		//Exit Button Actions
-		Exit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				
-			}
-		});
-		Error.hide();
-		
-		
-		
-		
+		resultName = new JTextField("");
+		resultName.setSelectedTextColor(Color.BLACK);
+		resultName.setHorizontalAlignment(SwingConstants.CENTER);
+		resultName.setForeground(Color.WHITE);
+		resultName.setFont(new Font("Stencil", Font.PLAIN, 14));
+		resultName.setEditable(false);
+		resultName.setColumns(10);
+		resultName.setBorder(null);
+		resultName.setBackground(new Color(0, 128, 0));
+		resultName.setBounds(180, 115, 260, 29);
+		resultName.hide();
+		contentPane.add(resultName);
 	}
 }
