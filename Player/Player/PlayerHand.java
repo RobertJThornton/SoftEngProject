@@ -8,9 +8,14 @@ public class PlayerHand{
 		Shuffler = shuff;
 		
 	}
+	
+	// Empty construstor
+	public PlayerHand() {
+		
+	}
+	
 	public void DealHand() {
 		for(int i = 0; i<5;i++) {
-			
 			setCard(i);
 		}
 	}

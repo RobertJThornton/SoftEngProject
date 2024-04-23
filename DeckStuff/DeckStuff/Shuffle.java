@@ -3,16 +3,17 @@ public class Shuffle{
 	
 	CreateDeck mainDeck;
 	public Shuffle(CreateDeck md) {
-	mainDeck = md;}
+		mainDeck = md;
+	}
 	
 	public Card DealCard(){
 		//initilizes dealedCard(used as card holder)
-		Card dealedCard=null;
+		Card dealedCard = null;
 		//initilizes a random number the size of the deck array
 		int pickNum = (int)(Math.random()*52);
 		
 		//initilizes pickable(need for the while loop to find a undealt card)
-		boolean pickable=false;
+		boolean pickable = false;
 		//loops while looking for a card that can be picked and breaks after finding one
 		while (!pickable) {
 			
@@ -42,7 +43,7 @@ public class Shuffle{
 		//deals whole deck randomly
 		for(int i=0; i< 52; i++) {
 			dealtCard = DealCard();
-			System.out.println(i+"|"+dealtCard.GetSuit()+","+dealtCard.GetNumber());
+			System.out.println(i + "|" + dealtCard.GetSuit() + "," + dealtCard.GetNumber());
 		}
 		//shuffle test
 		ShuffleDeck(mainDeck.CardDeck);
@@ -50,7 +51,7 @@ public class Shuffle{
 		//redo dealing
 		for(int i=0; i< 52; i++) {
 			dealtCard = DealCard();
-			System.out.println(i+"|"+dealtCard.GetSuit()+","+dealtCard.GetNumber());
+			System.out.println(i+"|" + dealtCard.GetSuit() + "," + dealtCard.GetNumber());
 		}
 	}
 }

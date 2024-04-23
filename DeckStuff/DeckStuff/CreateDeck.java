@@ -16,5 +16,9 @@ public class CreateDeck{
 	public Card[] getDeck() {
 		return CardDeck;
 	}
+	
+	public Card getCard(int position) {
+		return CardDeck[position];
+	}
 }
 

@@ -6,35 +6,36 @@ public class Result {
 	
 	public int GetResult() {
 
-	if(RoyalFlush() != 0) {
-		return RoyalFlush();
-	}
-	if(StraightFlush() !=0) {
-		return StraightFlush();
-	}
-	if(FourOfAKind() != 0) {
-		return FourOfAKind();
-	}
-	if(FullHouse() != 0) {
-		return FullHouse();
-	}
-	if(Flush() != 0) {
-		return Flush();
-	}
-	if(Straight() != 0) {
-		return Straight();
-	}
-	if(ThreeOfAKind() != 0) {
-		return ThreeOfAKind();
-	}
-	if(TwoPair() != 0) {
-		return TwoPair();
-	}
-	if(JacksOrBetter() != 0) {
-		return JacksOrBetter();
-	}
-	
-	return 0;
+		if(RoyalFlush() != 0) {
+			return RoyalFlush();
+		}
+		if(StraightFlush() !=0) {
+			return StraightFlush();
+		}
+		if(FourOfAKind() != 0) {
+			return FourOfAKind();
+		}
+		if(FullHouse() != 0) {
+			return FullHouse();
+		}
+		if(Flush() != 0) {
+			return Flush();
+		}
+		if(Straight() != 0) {
+			return Straight();
+		}
+		if(ThreeOfAKind() != 0) {
+			return ThreeOfAKind();
+		}
+		if(TwoPair() != 0) {
+			return TwoPair();
+		}
+		if(JacksOrBetter() != 0) {
+			return JacksOrBetter();
+		}
+		else {
+			return 0;
+		}
 	}
 	
 	public String GetResultName() {
@@ -66,9 +67,10 @@ public class Result {
 		if(JacksOrBetter() != 0) {
 			return "Jacks Or Better";
 		}
-		
-		return "You lose";
+		else {
+			return "You lose";
 		}
+	}
 	
 	public void SetResultCards(Card[] hand,int credits) {
 		checkHand = hand;
@@ -184,4 +186,5 @@ public class Result {
 			}
 		}
 	}
+	
 }
