@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="DeckStuff"/>
 	<classpathentry kind="src" path="Player"/>
+	<classpathentry kind="src" path="img"/>
 	<classpathentry kind="src" path="UnitTest"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
