@@ -32,14 +32,10 @@ public class PlayerHand{
 	public Card getCard(int numOfCard) {
 		return PlayerCards[numOfCard];
 	}
+	
 	public Card[] getHand() {
 		return PlayerCards;
 		
-	}
-	public void TestHand() {
-		for(int i = 0; i<5;i++) {
-			System.out.println(PlayerCards[i].GetSuit()+"|"+PlayerCards[i].GetNumber());
-		}
 	}
 	
 	public String GetSuit(int suitNum) {
@@ -55,8 +51,7 @@ public class PlayerHand{
 		case(4): suitSt = " of Hearts";
 		break;
 		}
-		return suitSt;
-		
+		return suitSt;	
 	}
 	
 	public String GetNumberString(int number) {
