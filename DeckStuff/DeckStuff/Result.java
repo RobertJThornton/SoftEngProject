@@ -1,11 +1,11 @@
 package DeckStuff;
-public class Result {
-	
-	Card[] checkHand;
-	int multi;
-	
-	public int GetResult() {
 
+public class Result {
+	Card[] f_checkHand;
+	private int f_multi;
+
+	//returns the result of the player hand
+	public int GetResult() {
 		if(RoyalFlush() != 0) {
 			return RoyalFlush();
 		}
@@ -38,6 +38,7 @@ public class Result {
 		}
 	}
 	
+	//returns result but as a string
 	public String GetResultName() {
 		
 		if(RoyalFlush() != 0) {
@@ -71,120 +72,136 @@ public class Result {
 			return "You lose";
 		}
 	}
-	
-	public void SetResultCards(Card[] hand,int credits) {
+
+	//decides credits to add to player credit bank
+	public void SetResultCards(Card[] hand, int credits) {
 		checkHand = hand;
 		sortCard();
-		multi = credits;
+		f_multi = credits;
 	}
+
+	//determine if hand is royal flush and determine credit return
 	public int RoyalFlush() {
-		if(checkHand[0].GetNumber() == 1
-		   && checkHand[1].GetNumber() == 10
-		   && checkHand[2].GetNumber() == 11
-		   && checkHand[3].GetNumber() == 12
-		   && checkHand[4].GetNumber() == 13) {
-			if(multi != 5)
-			return 250 * multi;
-			else return 4000;
+		if(f_checkHand[0].GetNumber() == 1
+		   && f_checkHand[1].GetNumber() == 10
+		   && f_checkHand[2].GetNumber() == 11
+		   && f_checkHand[3].GetNumber() == 12
+		   && f_checkHand[4].GetNumber() == 13) {
+			if(f_multi != 5) {
+				return 250 * f_multi;
+			}
+			else {
+				return 4000;
+			}
 		}
-		else return 0;
+		else {
+			return 0;
+		}
 	}
-	
+
+	//determine if hand is straight flush and determine credit return
 	public int StraightFlush() {
 		for(int i = 1; i < 5; i++) {
-			if(checkHand[0].GetSuit() != checkHand[i].GetSuit()) {
+			if(f_checkHand[0].GetSuit() != f_checkHand[i].GetSuit()) {
 				return 0;
 			}
 		}
 		for(int i = 0; i < 4; i++) {
-			if(checkHand[i].GetNumber() != checkHand[i+1].GetNumber()-1) {
+			if(f_checkHand[i].GetNumber() != f_checkHand[i+1].GetNumber()-1) {
 				return 0;
 			}
 		}
-		return 50 * multi;
+		return 50 * f_multi;
 	}
-	
+
+	//determine if hand is four of a kind and determine credit return
 	public int FourOfAKind() {
-		if(checkHand[0].GetNumber() != checkHand[3].GetNumber()
-			&& checkHand[0].GetNumber() != checkHand[3].GetNumber()) {
+		if(f_checkHand[0].GetNumber() != f_checkHand[3].GetNumber()
+			&& f_checkHand[0].GetNumber() != f_checkHand[3].GetNumber()) {
 			return 0;
 		}
-		else return 25 * multi;
+		else return 25 * f_multi;
 	}
-	
+
+	//determine if hand is a full house and determine credit return
 	public int FullHouse() {
-		if((checkHand[0].GetNumber() == checkHand[1].GetNumber()
-			&& checkHand[2].GetNumber() == checkHand[4].GetNumber())
-			|| (checkHand[0].GetNumber() == checkHand[2].GetNumber()
-			&& checkHand[3].GetNumber() == checkHand[4].GetNumber())) {
-					return 9 * multi;
+		if((f_checkHand[0].GetNumber() == f_checkHand[1].GetNumber()
+			&& f_checkHand[2].GetNumber() == f_checkHand[4].GetNumber())
+			|| (f_checkHand[0].GetNumber() == f_checkHand[2].GetNumber()
+			&& f_checkHand[3].GetNumber() == f_checkHand[4].GetNumber())) {
+					return 9 * f_multi;
 				}
 		return 0;
 	}
-	
+
+	//determine if hand is a flush and determine credit return
 	public int Flush() {
 		for(int i = 1; i < 5; i++) {
-			if(checkHand[0].GetSuit() != checkHand[i].GetSuit()) {
+			if(f_checkHand[0].GetSuit() != f_checkHand[i].GetSuit()) {
 				return 0;
 			}
 		}
-		return 6 * multi;
+		return 6 * f_multi;
 	}
-	
+
+	//determine if hand is a straight and determine credit return
 	public int Straight() {
 		for(int i = 0; i < 4; i++) {
-			if(checkHand[i].GetNumber() != checkHand[i+1].GetNumber()-1) {
+			if(f_checkHand[i].GetNumber() != f_checkHand[i+1].GetNumber()-1) {
 				return 0;
 			}
 		}
-		return 4*multi;
+		return 4 * f_multi;
 	}
-	
+
+	//determine if hand is three of a kind and determine credit return
 	public int ThreeOfAKind() {
-		if(checkHand[0].GetNumber() == checkHand[2].GetNumber()
-			|| checkHand[1].GetNumber() == checkHand[3].GetNumber()
-			|| checkHand[2].GetNumber() == checkHand[4].GetNumber()) {
-			return 3 * multi;
+		if(f_checkHand[0].GetNumber() == f_checkHand[2].GetNumber()
+			|| f_checkHand[1].GetNumber() == f_checkHand[3].GetNumber()
+			|| f_checkHand[2].GetNumber() == f_checkHand[4].GetNumber()) {
+			return 3 * f_multi;
 		}
 		return 0;
 	}
-	
+
+	//determine if hand has two pairs and determine credit return
 	public int TwoPair() {
 		int pairs = 0;
 		for(int i=0; i < 4; i++) {
-			if(checkHand[i].GetNumber() != checkHand[i+1].GetNumber()) {
+			if(f_checkHand[i].GetNumber() != f_checkHand[i+1].GetNumber()) {
 				pairs++;
 			}
 		}
-		if(pairs ==2) {
-			return 2 * multi;
+		if(pairs == 2) {
+			return 2 * f_multi;
 		}
 		else return 0;
 	}
-	
+
+	//determine if hand is has pair of jacks or better and determine credit return
 	public int JacksOrBetter() {
 		for(int i =0; i < 4; i++) {
-			if(checkHand[i].GetNumber() == checkHand[i+1].GetNumber()
-				&& (checkHand[i].GetNumber() == 1
-				|| checkHand[i].GetNumber() == 11
-				|| checkHand[i].GetNumber() == 12
-				|| checkHand[i].GetNumber() == 13)) {
-				return multi;
+			if(f_checkHand[i].GetNumber() == f_checkHand[i+1].GetNumber()
+				&& (f_checkHand[i].GetNumber() == 1
+				|| f_checkHand[i].GetNumber() == 11
+				|| f_checkHand[i].GetNumber() == 12
+				|| f_checkHand[i].GetNumber() == 13)) {
+				return f_multi;
 			}
 		}
 		return 0;
 	}
-	
+
+	//put hand in numerical order
 	public void sortCard() {
 		for(int l=0; l<6;l++) {
 			for(int i=0; i < 4;i++) {		
-				if(checkHand[i].GetNumber() > checkHand[i+1].GetNumber()) {
-					Card tempC = checkHand[i+1];
-					checkHand[i+1] = checkHand[i];
-					checkHand[i] = tempC;
+				if(f_checkHand[i].GetNumber() > f_checkHand[i+1].GetNumber()) {
+					Card tempC = f_checkHand[i+1];
+					f_checkHand[i+1] = f_checkHand[i];
+					f_checkHand[i] = tempC;
 				}
 			}
 		}
-	}
-	
+	}	
 }
