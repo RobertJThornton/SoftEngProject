@@ -84,8 +84,8 @@ public class Starter extends JFrame {
 	private JLabel Error;
 	private JLabel Invalid;
 	private JButton Exit;
-	private JTextField ResultNum;
-	private JTextField ResultName;
+	private JTextField resultNum;
+	private JTextField resultName;
 	
 	static CreateDeck mainDeck = new CreateDeck();
 	static Shuffle Shuffler = new Shuffle(mainDeck);
