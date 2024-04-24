@@ -676,7 +676,7 @@ public class Starter extends JFrame {
 		Invalid.setForeground(new Color(255, 0, 0));
 		Invalid.setFont(new Font("Stencil", Font.PLAIN, 24));
 		Invalid.setBounds(150, 310, 450, 55);
-		f_contentPane.add(Invalid);
+		contentPane.add(Invalid);
 		Invalid.hide();
 		
 		//Exit =============================================================== Exit
