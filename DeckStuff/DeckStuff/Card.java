@@ -2,12 +2,15 @@ package DeckStuff;
 import java.util.*;
 
 /**
+ * The Card class.
+ *
  * @author      Obsidian
- * @version     1.0   
- * @since       1.0       
+ * @version     1.0
+ * @since       1.0
  */
 
 //Creates Card with suit and number
+
 public class Card{
 
 	/** The f suit. */

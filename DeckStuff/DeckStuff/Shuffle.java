@@ -1,6 +1,8 @@
 package DeckStuff;
 
 /**
+ * The Shuffle class.
+ * 
  * @author      Obsidian
  * @version     1.0   
  * @since       1.0       

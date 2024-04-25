@@ -39,7 +39,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
-// TODO: Auto-generated Javadoc
+/**
+ * The GUI.
+ * 
+ * @author      Obsidian
+ * @version     1.0   
+ * @since       1.0       
+ */
+
 /**
  * The Class Starter.
  */
@@ -214,9 +221,8 @@ public class Starter extends JFrame {
 		});
 	}
 
-	/**
-	 * Instantiates a new starter.
-	 */
+	
+	/** The GUI frame. */
 	//create the frame
 	public Starter() {
 		

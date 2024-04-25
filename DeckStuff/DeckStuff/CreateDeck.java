@@ -1,6 +1,8 @@
 package DeckStuff;
 
 /**
+ * The CreateDeck class.
+ * 
  * @author      Obsidian
  * @version     1.0   
  * @since       1.0       
@@ -8,7 +10,6 @@ package DeckStuff;
 
 public class CreateDeck{
 	
-	/** The Card deck. */
 	//create empty array of 52 cards
 	Card[] CardDeck = new Card[52]; 
 	

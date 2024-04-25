@@ -2,6 +2,8 @@ package Player;
 import DeckStuff.*;
 
 /**
+ * The PlayerHand class.
+ * 
  * @author      Obsidian
  * @version     1.0   
  * @since       1.0       
@@ -9,6 +11,7 @@ import DeckStuff.*;
 
 public class PlayerHand{
 	
+	/** The Shuffler. */
 	Shuffle Shuffler;
 	
 	/** The Player cards. */
@@ -23,6 +26,7 @@ public class PlayerHand{
 		Shuffler = shuff;
 	}
 	
+	/** PlayerHand empty constructor*/
 	// Empty construstor
 	public PlayerHand() {
 		

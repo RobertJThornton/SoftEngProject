@@ -1,6 +1,8 @@
 package DeckStuff;
 
 /**
+ * The DeckStuff class
+ * 
  * @author      Obsidian
  * @version     1.0   
  * @since       1.0       
