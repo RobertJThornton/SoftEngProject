@@ -75,9 +75,9 @@ public class Result {
 
 	//decides credits to add to player credit bank
 	public void SetResultCards(Card[] hand, int credits) {
-		checkHand = hand;
+		this.f_checkHand = hand;
 		sortCard();
-		f_multi = credits;
+		this.f_multi = credits;
 	}
 
 	//determine if hand is royal flush and determine credit return
