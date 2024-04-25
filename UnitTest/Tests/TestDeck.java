@@ -16,12 +16,20 @@ public class TestDeck extends TestCase {
 	}
 	
 	@Test
-	public void testInitial() {
+	public void testInitialCard() {
+		Card testCard = new Card();
+		boolean testResult = (testCard.GetSuit() == 0) && 
+							 (testCard.GetNumber() == 0) &&
+							 (testCard.IsPicked() == false);
+		assert testResult;
+	}
+	
+	@Test
+	public void testInitialDeck() {
 		CreateDeck deck = new CreateDeck();
 		Card[] initDeck = deck.getDeck();
 		
-		assert(initDeck == null);
-		
+		assert(initDeck.length == 52);
 	}
 	
 	@Test
