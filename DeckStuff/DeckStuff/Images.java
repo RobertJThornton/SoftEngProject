@@ -1,6 +1,22 @@
 package DeckStuff;
 
+/**
+ * @author      Obsidian
+ * @version     1.0   
+ * @since       1.0       
+ */
+
 public class Images {
+	
+	/**
+	 * Return the right file path for the card's image
+	 *
+	 * @param numbers the card's rank
+	 * @param suits the card's suit
+	 * @param replace 
+	 * @return the appropriate files path for the card
+	 */
+	
 	//diamonds = 1, clubs = 2, spades = 3, hearts = 4
 	public static String cardIm(int numbers, int suits, int replace) {
 		System.out.println(numbers + " " + suits);

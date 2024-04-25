@@ -39,6 +39,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class Starter.
+ */
 public class Starter extends JFrame {
 	/*NAMING RULES FOR GUI
 	 * JLabels start with capital letters
@@ -51,57 +55,152 @@ public class Starter extends JFrame {
 	 * JTextField can be changed by player
 	 */
 
+	/** The content pane. */
 	private JPanel contentPane;
+	
+	/** The Name. */
 	private JLabel Name;
+	
+	/** The name. */
 	private JTextField name;
+	
+	/** The Credit. */
 	private JLabel Credit;
+	
+	/** The credit. */
 	private JTextField credit;
+	
+	/** The Bet. */
 	private JLabel Bet;
+	
+	/** The bet. */
 	private JTextField bet;
+	
+	/** The Start N. */
 	private JLabel StartN;
+	
+	/** The start N. */
 	private JTextField startN;
+	
+	/** The Start C. */
 	private JLabel StartC;
+	
+	/** The start C. */
 	private JTextField startC;
+	
+	/** The Credit rule. */
 	private JLabel CreditRule;
+	
+	/** The Start. */
 	private JButton Start;
+	
+	/** The Start B. */
 	private JLabel StartB;
+	
+	/** The start B. */
 	private JTextField startB;
+	
+	/** The Bet rule. */
 	private JLabel BetRule;
+	
+	/** The Play. */
 	private JButton Play;
+	
+	/** The card 1. */
 	private JTextField card1;
+	
+	/** The card 2. */
 	private JTextField card2;
+	
+	/** The card 3. */
 	private JTextField card3;
+	
+	/** The card 4. */
 	private JTextField card4;
+	
+	/** The card 5. */
 	private JTextField card5;
+	
+	/** The Card 1. */
 	private JToggleButton Card1;
+	
+	/** The Card 2. */
 	private JToggleButton Card2;
+	
+	/** The Card 3. */
 	private JToggleButton Card3;
+	
+	/** The Card 4. */
 	private JToggleButton Card4;
+	
+	/** The Card 5. */
 	private JToggleButton Card5;
+	
+	/** The Start R. */
 	private JLabel StartR;
+	
+	/** The Confirm. */
 	private JButton Confirm;
+	
+	/** The Restart. */
 	private JButton Restart;
+	
+	/** The Error. */
 	private JLabel Error;
+	
+	/** The Invalid. */
 	private JLabel Invalid;
+	
+	/** The Exit. */
 	private JButton Exit;
+	
+	/** The result num. */
 	private JTextField resultNum;
+	
+	/** The result name. */
 	private JTextField resultName;
 	
+	/** The main deck. */
 	static CreateDeck mainDeck = new CreateDeck();
+	
+	/** The Shuffler. */
 	static Shuffle Shuffler = new Shuffle(mainDeck);
+	
+	/** The Hand. */
 	static PlayerHand Hand = new PlayerHand(Shuffler);
+	
+	/** The Results. */
 	static Result Results = new Result();
 	
+	/** The credits. */
 	static int credits = 0;
+	
+	/** The bet amount. */
 	static int betAmount = 0;
 	
+	/** The c 1. */
 	static boolean c1 = false;
+	
+	/** The c 2. */
 	static boolean c2 = false;
+	
+	/** The c 3. */
 	static boolean c3 = false;
+	
+	/** The c 4. */
 	static boolean c4 = false;
+	
+	/** The c 5. */
 	static boolean c5 = false;
+	
+	/** The start. */
 	static boolean start = true;
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -115,6 +214,9 @@ public class Starter extends JFrame {
 		});
 	}
 
+	/**
+	 * Instantiates a new starter.
+	 */
 	//create the frame
 	public Starter() {
 		

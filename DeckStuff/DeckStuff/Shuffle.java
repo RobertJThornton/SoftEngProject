@@ -1,11 +1,29 @@
 package DeckStuff;
+
+/**
+ * @author      Obsidian
+ * @version     1.0   
+ * @since       1.0       
+ */
+
 public class Shuffle{
 	
 	CreateDeck f_mainDeck;
+	
+	/**
+	 * Pass in the deck to the shuffler
+	 *
+	 * @param md the deck
+	 */
 	public Shuffle(CreateDeck md) {
 		f_mainDeck = md;
 	}
 	
+	/**
+	 * Deal card.
+	 *
+	 * @return a random card from the deck
+	 */
 	public Card DealCard(){
 		//initilizes dealedCard(used as card holder)
 		Card dealedCard = null;
@@ -31,27 +49,14 @@ public class Shuffle{
 		return dealedCard;
 	}
 	
+	/**
+	 * Shuffle deck.
+	 *
+	 * @param cardDeck the card deck
+	 */
 	//shuffles by setting each one to unpicked
 	public void ShuffleDeck(Card[] cardDeck) {
 		for(int i=0; i < 52; i++)
 		cardDeck[i].SetUnPicked();
-	}
-	
-	//can take a long time since its dealing 100 cards at once
-	public void TestShuffle() {	
-		Card dealtCard = null;
-		//deals whole deck randomly
-		for(int i=0; i< 52; i++) {
-			dealtCard = DealCard();
-			System.out.println(i + "|" + dealtCard.GetSuit() + "," + dealtCard.GetNumber());
-		}
-		//shuffle test
-		ShuffleDeck(f_mainDeck.CardDeck);
-		System.out.println("---");
-		//redo dealing
-		for(int i=0; i< 52; i++) {
-			dealtCard = DealCard();
-			System.out.println(i+"|" + dealtCard.GetSuit() + "," + dealtCard.GetNumber());
-		}
 	}
 }
