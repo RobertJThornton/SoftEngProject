@@ -76,4 +76,8 @@ public class PlayerHand{
 	public String getFullName(int number, int suit) {
 		return GetNumberString(number) + GetSuit(suit);//GetSuit(suit) + GetNumberString(number);
 	}
+	
+	public int handSize() {
+		return PlayerCards.length;
+	}
 }
