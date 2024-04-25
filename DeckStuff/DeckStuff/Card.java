@@ -13,6 +13,13 @@ public class Card{
 	public Card(int suit, int number, boolean picked){
 		this.f_suit = suit;
 		this.f_number = number;
+		this.f_picked = picked;
+	}
+	
+	// Empty constructor
+	public Card() {
+		this.f_suit = 0;
+		this.f_number = 0;
 		this.f_picked = false;
 	}
 	
@@ -79,4 +86,5 @@ public class Card{
 	public void SetUnPicked() {
 		f_picked = false;
 	}
+	
 }
