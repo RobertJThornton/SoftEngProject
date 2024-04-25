@@ -22,8 +22,8 @@ public class TestPlayer extends TestCase {
 	
 	@Test
 	public void testInitial() {
-		PlayerHand hand = new PlayerHand(null);
-		assert (hand == null);
+		PlayerHand hand = new PlayerHand();
+		assert (hand.handSize()== 5);
 	}
 
 	@Test
@@ -31,6 +31,7 @@ public class TestPlayer extends TestCase {
 		CreateDeck deck = new CreateDeck();
 		Shuffle shuffler = new Shuffle(deck);
 		PlayerHand hand = new PlayerHand(shuffler);
+		
 		System.out.println("-----------PLAYER'S HAND--------------");
 		hand.DealHand();
 		for (int i = 0; i < 5; i++) {
